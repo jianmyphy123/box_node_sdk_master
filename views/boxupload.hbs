@@ -1,0 +1,106 @@
+{{#if error}}
+	<div class="alert alert-danger" role="alert">
+		<strong>{{error}}</strong>
+		{{#if errorDetails}}
+			<div>{{errorDetails}}</div>
+		{{/if}}
+	</div>
+{{/if}}
+
+<h1>Upload a File</h1>
+<form method="post" action="/startupload" enctype="multipart/form-data" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Company Name:</label>
+        <div class="col-sm-10">
+            <input name="company" type="text" id="company" class="form-control" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Presenters Name:</label>
+        <div class="col-sm-10">
+            <input name="contact_name" type="text" id="contact_name" class="form-control" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Contact Email Address:</label>
+        <div class="col-sm-10">
+            <input name="email" type="email" id="email" class="form-control" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Contact Phone Number:</label>
+        <div class="col-sm-10">
+            <input type="text" name="phone" id="phone" class="form-control" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Are You Webcasting?</label>
+        <div class="col-sm-10 radio">
+            <label>
+            <input type="radio" name="webcasting" value="yes" id="webcasting_0" checked/>
+            Yes
+            </label>
+            <label>
+            <input type="radio" name="webcasting" value="no" id="webcasting_1" />
+            No
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Other Notes:</label>
+        <div class="col-sm-10">
+            <textarea name="notes" id="notes" cols="45" rows="5" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Upload File:</label>
+        <div class="col-sm-10">
+            <input name="file" type="file" id="file" required/>
+        </div>
+    
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+            <div class="g-recaptcha" data-sitekey="6Leh1yQTAAAAAG_W83klRUWXXpDLVNfXJjtfDxaY" data-callback="correctCaptcha"></div>
+            <span id="recaptcha-error" style="color:red">You can't leave Captcha Code empty.</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+            
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+            <input name="btnUpload" type="submit" value="Upload" class="btn btn-lg btn-success" id="btnSubmit"/>
+        </div>
+    </div>
+</form>
+<script>
+function correctCaptcha() {
+    var response = grecaptcha.getResponse();
+    if (response.length == 0) {
+        $('#recaptcha-error').show();
+    }
+    else {
+        $('#recaptcha-error').hide();
+    }
+}
+$(function() {
+    $('#btnSubmit').click(function(e) {
+        /*
+        var response = grecaptcha.getResponse();
+        if (response.length == 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+        */
+        return true;
+    });
+})
+</script>
